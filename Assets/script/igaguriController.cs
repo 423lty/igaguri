@@ -2,51 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class igaguriController : MonoBehaviour
+public class IgaguriController : MonoBehaviour
 {
-
-    [SerializeField,Header("投げるスピード")]
-    float throwSpeed;
-
-    Rigidbody rigidbody;
-
     // Start is called before the first frame update
-    void Start()
-    {
-        rigidbody = GetComponent<Rigidbody>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //キーの入力
-        InputKey();
-    }
     /// <summary>
-    /// キーの入力
+    /// 攻撃
     /// </summary>
-    void InputKey()
+    /// <param name="dir"></param>
+    public void Shoot(Vector3 dir)
     {
-        //キーの入力
-        if (Input.GetMouseButton(0))
-        {
-            //イガグリを投げる
-            ThrowIgaguri();
-        }
+        GetComponent<Rigidbody>().AddForce(dir);
     }
-    /// <summary>
-    /// イガグリを投げる
-    /// </summary>
-    void ThrowIgaguri()
+
+    private void OnCollisionEnter(Collision collision)
     {
-        //力
-        var vector=new Vector3();
-
-        vector.z = throwSpeed;
-
-        //位置を更新
-        this.rigidbody.AddForce(vector);
-        //this.transform.position += vector;
-
+        GetComponent<Rigidbody>().isKinematic = true;
+        GetComponent<ParticleSystem>().Play();
     }
+    private void Start()
+    {
+        Application.targetFrameRate = 60;
+        //Shoot(new Vector(0,200,2000));
+    }
+
 }
