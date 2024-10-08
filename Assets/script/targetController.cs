@@ -2,28 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class targetController : MonoBehaviour
+
+public class TargetController : MonoBehaviour
 {
-    [SerializeField, Header("ターゲットオブジェクト")]
-    GameObject target;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter(Collision collision)
     {
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag=="igaguri")
+        if (collision.gameObject.tag == "igaguri")
         {
-            Destroy(target);
+           // Destroy(target);
+            Debug.Log("加算");
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "igaguri")
+        {
+            //Destroy(other);
+            Debug.Log("加算");
+
+            ScoreController.AddScore();
+
+
+        }
+    }
+
 
 }

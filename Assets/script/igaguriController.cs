@@ -1,10 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class IgaguriController : MonoBehaviour
 {
+    [SerializeField, Header("ìæì_")]
+    static int igaguriPoint = 10;
+
     // Start is called before the first frame update
+    public static int IgaguriPoint
+    {
+        get=>igaguriPoint;
+    }
+
     /// <summary>
     /// çUåÇ
     /// </summary>
@@ -18,6 +28,9 @@ public class IgaguriController : MonoBehaviour
     {
         GetComponent<Rigidbody>().isKinematic = true;
         GetComponent<ParticleSystem>().Play();
+
+        if(CompareTag("target")) ScoreController.AddScore();
+
     }
     private void Start()
     {
