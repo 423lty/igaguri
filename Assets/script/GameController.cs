@@ -34,9 +34,9 @@ public class GameController : MonoBehaviour
         //ƒQ[ƒ€ŽžŠÔ‚ª§ŒÀ‚ð’´‚¦‚½‚çƒQ[ƒ€‚ð’âŽ~‚·‚é
         if (gameTime > MaxGameTime)
         {
-            Time.timeScale = 0;
-            GameObject result = GameObject.Find("resultScore");
-            result.SetActive(true);
+            //Time.timeScale = 0;
+            SceneController sceneController = GameObject.Find("Scene").GetComponent<SceneController>();
+            sceneController.GameEnd();  
         }
 
         //ŽžŠÔ‚ð‰ÁŽZ

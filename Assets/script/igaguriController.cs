@@ -9,6 +9,12 @@ public class IgaguriController : MonoBehaviour
     [SerializeField, Header("得点")]
     static int igaguriPoint = 10;
 
+    //フレーム
+    int frameCount = 0;
+
+    //消すフラグ
+    bool isDestory = false;
+
     // Start is called before the first frame update
     public static int IgaguriPoint
     {
@@ -27,15 +33,29 @@ public class IgaguriController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         GetComponent<Rigidbody>().isKinematic = true;
+        //GetComponent<SphereCollider>().isTrigger = true;
         GetComponent<ParticleSystem>().Play();
+       
+        //スコア,当たった回数を加算
+        if(collision.gameObject.CompareTag("target"))
+        { 
+            ScoreController.AddScore(); 
+            ScoreController.AddCount();
+        }
 
-        if(CompareTag("target")) ScoreController.AddScore();
+        //
+        if(isDestory) Destroy(gameObject);
 
     }
+ 
     private void Start()
     {
         Application.targetFrameRate = 60;
         //Shoot(new Vector(0,200,2000));
+    }
+    private void Update()
+    {
+     
     }
 
 }
