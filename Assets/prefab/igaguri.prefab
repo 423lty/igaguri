@@ -139,8 +139,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.4
-  m_Center: {x: 0, y: 0, z: 0.04}
+  m_Radius: 0.3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &2326097976367637160
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -149,7 +149,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2269564940718679336}
   serializedVersion: 8
-  lengthInSec: 0.13
+  lengthInSec: 0.1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0

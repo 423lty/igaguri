@@ -9,11 +9,9 @@ public class IgaguriController : MonoBehaviour
     [SerializeField, Header("得点")]
     static int igaguriPoint = 10;
 
-    //フレーム
-    int frameCount = 0;
+    [SerializeField,Header("フレームカウント最大")]
+    const int MaxFrameCount = 3;
 
-    //消すフラグ
-    bool isDestory = false;
 
     // Start is called before the first frame update
     public static int IgaguriPoint
@@ -37,17 +35,17 @@ public class IgaguriController : MonoBehaviour
         GetComponent<ParticleSystem>().Play();
        
         //スコア,当たった回数を加算
-        if(collision.gameObject.CompareTag("target"))
+        if (collision.gameObject.CompareTag("target"))
         { 
             ScoreController.AddScore(); 
             ScoreController.AddCount();
         }
 
-        //
-        if(isDestory) Destroy(gameObject);
+
+        Destroy(gameObject,MaxFrameCount);
 
     }
- 
+
     private void Start()
     {
         Application.targetFrameRate = 60;
@@ -55,7 +53,7 @@ public class IgaguriController : MonoBehaviour
     }
     private void Update()
     {
-     
+  
     }
 
 }
